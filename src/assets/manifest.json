@@ -1,0 +1,12 @@
+{
+  "name": "Index extension",
+  "version": "2.1",
+  "manifest_version": 2,
+  "description": "Indexing some urls.",
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "browser_action": {
+    "default_title": "",
+    "default_icon": "icon.svg",
+    "default_popup": "index.html"
+  }
+}
