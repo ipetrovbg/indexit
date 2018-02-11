@@ -1,0 +1,33 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span><img [src]="splitString + this.form.get('favicon').value" [alt]="this.form.get('title').value"> Edit link</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<form (ngSubmit)="editLink()" [formGroup]="form">
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="TITLE" formControlName="title" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="URL" formControlName="url" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="DESCRIPTION" formControlName="description" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="FAVICON" formControlName="favicon" />
+    </mat-form-field>
+  </div>
+  <div>
+    <button type="submit" mat-raised-button color="primary">Edit</button>
+    <button type="button" mat-raised-button color="warn" (click)="delete()">Delete</button>
+  </div>
+</form>
+

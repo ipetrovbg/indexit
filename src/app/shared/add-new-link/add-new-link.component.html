@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span><img [src]="favIcon" [alt]="this.form.get('title').value"> Create link</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<form (ngSubmit)="addNewLink()" [formGroup]="form">
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Title" formControlName="title" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Url" formControlName="url" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Description" formControlName="description" />
+    </mat-form-field>
+  </div>
+  <div>
+    <button type="submit" mat-raised-button color="primary">Create</button>
+  </div>
+</form>
+

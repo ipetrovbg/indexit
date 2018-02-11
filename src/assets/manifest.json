@@ -3,10 +3,26 @@
   "version": "2.1",
   "manifest_version": 2,
   "description": "Indexing some urls.",
-  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [ "http://*./*", "https://*./*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "http://*./*",
+    "https://*./*"
+  ],
   "browser_action": {
     "default_title": "",
-    "default_icon": "icon.svg",
+    "default_icon": "icon.png",
     "default_popup": "index.html"
-  }
+  },
+  "web_accessible_resources": [
+    "assets/css/*",
+    "assets/js/*",
+    "assets/fonts/*"
+  ]
 }

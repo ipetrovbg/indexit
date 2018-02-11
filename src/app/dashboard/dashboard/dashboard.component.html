@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon aria-label="Example icon-button with a heart icon">menu</mat-icon>
+    </button>
+    <span>{{ (user | async)?.email }}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+
+  <mat-drawer #drawer class="extension-sidenav" mode="over">
+    <button mat-raised-button color="warn" (click)="logout()">Sign Out</button>
+  </mat-drawer>
+
+  <div class="example-container mat-elevation-z8">
+
+    <div class="padding all p20">
+      <mat-form-field class="full-width">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- FavIcon Column -->
+      <ng-container matColumnDef="favicon">
+        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="max-width: 35px;">
+          <img [src]="element.favicon" [alt]="element.title"/>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.title}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Url Column -->
+      <ng-container matColumnDef="url">
+        <mat-header-cell *matHeaderCellDef> URL </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"
+        > {{element.url}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="selectRow(row)"></mat-row>
+    </mat-table>
+  </div>
+</mat-drawer-container>
+<div class="new-link">
+  <button mat-fab color="warn" (click)="addNewLink()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

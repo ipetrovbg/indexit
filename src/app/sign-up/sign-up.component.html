@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Sign Up</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<form (ngSubmit)="signUp()" [formGroup]="form">
+  <div>
+    <a routerLink="/sign-in">Sign In</a>
+  </div>
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" formControlName="email" />
+    </mat-form-field>
+  </div>
+
+ <div>
+   <mat-form-field class="full-width">
+     <input matInput placeholder="Password" type="password" formControlName="password" />
+   </mat-form-field>
+ </div>
+  <div>
+    <button type="submit" mat-raised-button color="primary">Sign Up</button>
+  </div>
+</form>

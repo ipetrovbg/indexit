@@ -11,4 +11,8 @@ export class UpdateUser implements Action {
   constructor( public user: User ) { }
 }
 
-export type UserActions = UpdateUser;
+export class ResetUser implements Action {
+  public readonly type: Actions.RESET_USER = Actions.RESET_USER;
+}
+
+export type UserActions = UpdateUser | ResetUser;
