@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+  margin: 0;
+  padding: 0;
+}
 .app-wrapper {
   width: 350px!important;
   max-height: 500px!important;
@@ -37,4 +41,10 @@
   top: 432px;
   left: 270px;
   z-index: 9999;
+}
+mat-dialog-container {
+  padding: 0!important;
+  form {
+    padding: 24px!important;
+  }
 }
