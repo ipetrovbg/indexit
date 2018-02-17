@@ -57,6 +57,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    const currentTab = {
+      active: true,
+      currentWindow: true
+    };
+    chrome.tabs.query(currentTab, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {type: 'get-url'}, {}, (response) => {
+        console.log(response);
+      });
+    });
   }
 
   logout() {
@@ -98,7 +107,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       currentWindow: true
     };
     chrome.tabs.query(currentTab, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {type: 'open-url', data: link}, {}, (response) => {});
+      chrome.tabs.sendMessage(tabs[0].id, {type: 'open-url', data: link}, {}, (response) => {
+        console.log(response);
+      });
     });
   }
 
