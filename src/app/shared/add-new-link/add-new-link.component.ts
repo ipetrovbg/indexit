@@ -40,7 +40,7 @@ export class AddNewLinkComponent implements OnInit {
       currentWindow: true
     };
     chrome.tabs.query(currentTab, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, 'get-url', {}, (response) => {
+      chrome.tabs.sendMessage(tabs[0].id, {type: 'get-url'}, {}, (response) => {
         console.log('chrome response', response);
         this.favIcon = `${this.favIconeDomain}${response.url.href}`;
         this.form.patchValue({

@@ -5,9 +5,9 @@ body {
   padding: 0;
 }
 .app-wrapper {
-  width: 350px!important;
-  max-height: 500px!important;
-  height: 500px;
+  width: 460px !important;
+  max-height: 600px !important;
+  height: 600px;
   overflow: auto;
 }
 .full-width {
@@ -38,13 +38,27 @@ body {
 }
 .new-link {
   position: fixed;
-  top: 432px;
-  left: 270px;
-  z-index: 9999;
+  top: 534px;
+  left: 390px;
+  z-index: 5;
 }
 mat-dialog-container {
   padding: 0!important;
   form {
     padding: 24px!important;
+  }
+}
+.text-ellipsis {
+  text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+}
+.hidden {
+  position: fixed;
+  bottom: -100px;
+}
+
+snack-bar-container {
+  background-color: #fff!important;
+  simple-snack-bar {
+    color: #dadada!important;
   }
 }

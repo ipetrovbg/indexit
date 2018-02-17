@@ -10,51 +10,79 @@
 <mat-drawer-container class="example-container" autosize>
 
   <mat-drawer #drawer class="extension-sidenav" mode="over">
-    <button mat-raised-button color="warn" (click)="logout()">Sign Out</button>
+    <!--<button mat-raised-button color="warn" (click)="logout()">Sign Out</button>-->
+
+    <mat-nav-list>
+      <mat-list-item (click)="logout()">Sign Out</mat-list-item>
+    </mat-nav-list>
+
   </mat-drawer>
 
-  <div class="example-container mat-elevation-z8">
+    <div class="container mat-elevation-z8">
+      <div class="padding all p20">
+        <mat-form-field class="full-width">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
 
-    <div class="padding all p20">
-      <mat-form-field class="full-width">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
+      <mat-table #table [dataSource]="dataSource" class="table" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+
+        <!-- FavIcon Column -->
+        <ng-container matColumnDef="favicon">
+          <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+          <mat-cell *matCellDef="let element" style="max-width: 35px;cursor: pointer;" (click)="onOpen(element)">
+            <img [src]="element.favicon" [alt]="element.title"/>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="text-ellipsis" [matTooltip]="element.title" matTooltipPosition="above">
+            {{element.title}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Url Column -->
+        <ng-container matColumnDef="url">
+          <mat-header-cell *matHeaderCellDef> URL </mat-header-cell>
+          <mat-cell
+            *matCellDef="let element"
+            class="text-ellipsis"
+            [matTooltip]="element.url"
+            matTooltipPosition="above"
+          >
+            {{element.url}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Copy Column -->
+        <ng-container matColumnDef="copy">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element" style="max-width: 40px;">
+            <button mat-icon-button (click)="copyContent({e:$event, item: element})" matTooltip="copy to clipboard" matTooltipPosition="above">
+              <mat-icon style="font-size: 16px;">content_copy</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="selectRow(row)"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 20]"
+                     [showFirstLastButtons]="true">
+      </mat-paginator>
+      <input type="text" class="hidden" #url>
     </div>
 
-    <mat-table #table [dataSource]="dataSource">
 
-      <!-- FavIcon Column -->
-      <ng-container matColumnDef="favicon">
-        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-        <mat-cell *matCellDef="let element" style="max-width: 35px;">
-          <img [src]="element.favicon" [alt]="element.title"/>
-        </mat-cell>
-      </ng-container>
-
-      <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          {{element.title}}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Url Column -->
-      <ng-container matColumnDef="url">
-        <mat-header-cell *matHeaderCellDef> URL </mat-header-cell>
-        <mat-cell
-          *matCellDef="let element"
-          style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"
-        > {{element.url}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="selectRow(row)"></mat-row>
-    </mat-table>
-  </div>
 </mat-drawer-container>
 <div class="new-link">
   <button mat-fab color="warn" (click)="addNewLink()">
     <mat-icon>add</mat-icon>
   </button>
 </div>
+

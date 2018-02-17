@@ -9,11 +9,16 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatPaginatorModule,
+  MatTooltipModule,
+  MatCardModule,
 } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddNewLinkComponent } from './add-new-link/add-new-link.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { EditLinkComponent } from './edit-link/edit-link.component';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
 @NgModule({
   imports: [
@@ -28,6 +33,11 @@ import { EditLinkComponent } from './edit-link/edit-link.component';
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MalihuScrollbarModule.forRoot()
   ],
   declarations: [AddNewLinkComponent, EditLinkComponent],
   providers: [],
@@ -41,7 +51,12 @@ import { EditLinkComponent } from './edit-link/edit-link.component';
     MatSidenavModule,
     MatIconModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MalihuScrollbarModule
   ],
   entryComponents: [AddNewLinkComponent, EditLinkComponent]
 })
