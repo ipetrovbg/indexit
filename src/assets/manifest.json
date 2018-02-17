@@ -6,7 +6,7 @@
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "content_scripts": [
     {
-      "matches": [ "http://*./*", "https://*./*"],
+      "matches": [ "<all_urls>"],
       "js": ["content.js"]
     }
   ],
@@ -17,8 +17,7 @@
   },
   "permissions": [
     "tabs",
-    "http://*./*",
-    "https://*./*"
+    "<all_urls>"
   ],
   "browser_action": {
     "default_title": "",
